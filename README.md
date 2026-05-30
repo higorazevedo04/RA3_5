@@ -1,35 +1,30 @@
-# Compilador RPN — Analisador Semântico + Geração de Assembly
+# Analisador Semantico
 
 ---
 
-## 🏫 Identificação
+## Identificação
 
 | Campo        | Informação                                        |
 |--------------|---------------------------------------------------|
-| **Instituição** | [Nome da Instituição de Ensino]              |
-| **Disciplina**  | Compiladores / Construção de Compiladores    |
-| **Ano**         | 2025                                         |
-| **Professor**   | [Nome do Professor]                          |
-| **Grupo (Canvas)** | RA2_5                                     |
+| **Instituição** | Pontifícia Universidade Católica do Paraná (PUCPR)            |
+| **Disciplina**  | Linguagens Formais e Compiladores            |
+| **Ano**         | 2026                                         |
+| **Professor**   | Frank de Alcantara                           |
+| **Grupo (Canvas)** | RA3_5                                     |
 | **Fase**        | Fase 3 — Analisador Semântico + Assembly     |
 | **Linguagem de implementação** | Python 3                      |
 
 ---
 
-## 👥 Integrantes do Grupo (Ordem Alfabética)
+##  Integrantes do Grupo 
 
-| Nome completo | GitHub |
-|---------------|--------|
-| Higor Leonardo da Silva Azevedo | [@username1](https://github.com/username1) |
-| *(Integrante 2 — nome completo)* | [@username2](https://github.com/username2) |
-| *(Integrante 3 — nome completo)* | [@username3](https://github.com/username3) |
-| *(Integrante 4 — nome completo)* | [@username4](https://github.com/username4) |
-
-> **Preencha os campos acima** com os nomes reais em ordem alfabética e os usuários corretos do GitHub.
+| Nome completo |
+|---------------|
+| Higor Leonardo da Silva Azevedo | 
 
 ---
 
-## 📋 Sumário
+##  Sumário
 
 1. [Descrição da Linguagem](#1-descrição-da-linguagem)
 2. [Linguagem de Implementação](#2-linguagem-de-implementação)
