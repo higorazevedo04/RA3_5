@@ -1,25 +1,20 @@
-# Compilador RPN — Analisador Semântico + Geração de Assembly
+# Analisador Semantico
 
-> **Instituição:** [Nome da Instituição de Ensino]
-> **Disciplina:** Compiladores / Construção de Compiladores
-> **Ano:** 2025
-> **Professor:** [Nome do Professor]
-> **Grupo:** RA2_5 — Fase 3
-
----
-
-## 👥 Integrantes do Grupo (Ordem Alfabética)
-
-| Nome | RA |
-|------|----|
-| Higor Leonardo da Silva Azevedo | — |
-| *(demais integrantes em ordem alfabética)* | — |
-
-> Substitua os campos em branco com os dados reais do grupo.
+- **Nome:** Higor Leonardo da Silva Azevedo
+- **Instituição:** Pontifícia Universidade Católica do Paraná (PUCPR)
+- **Disciplina:** Linguagens Formais e Compiladores
+- **Ano:** 2026
+- **Professor:** Frank de Alcantara
+- **Grupo:** RA3_5 — Fase 3
 
 ---
 
-## 📋 Sumário
+## Integrantes do Grupo 
+| Higor Leonardo da Silva Azevedo |
+
+---
+
+## Sumário
 
 1. [Descrição da Linguagem](#descrição-da-linguagem)
 2. [Tipos Suportados](#tipos-suportados)
@@ -82,7 +77,6 @@ A linguagem implementada é uma linguagem imperativa de **notação polonesa rev
 | `RES`    | argumento deve ser `int`     | `any`     |
 | `MEM`    | qualquer expressão           | tipo da expressão |
 
-> **Nota:** O tipo `bool` **não pode** ser usado em operações aritméticas.
 
 ---
 
