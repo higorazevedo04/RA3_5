@@ -1,9 +1,5 @@
 # Gramática da Linguagem RPN — Documentação EBNF
 
-> Documento de referência formal da gramática implementada pelo compilador RPN (Grupo RA2_5).
-
----
-
 ## Notação utilizada
 
 | Símbolo      | Significado                                          |
@@ -37,7 +33,7 @@ linha_ou_fim
 
 
 (* ============================================================ *)
-(*  INSTRUÇÃO E CONTEÚDO RPN                                     *)
+(*  INSTRUCAO E CONTEUDO RPN                                     *)
 (* ============================================================ *)
 
 lista_instrucoes
@@ -85,13 +81,13 @@ valor
       | instrucao
 
 operador
-    ::= '+'    (* adição            *)
-      | '-'    (* subtração         *)
-      | '*'    (* multiplicação     *)
-      | '^'    (* potenciação       *)
-      | '/'    (* divisão inteira   *)
-      | '%'    (* módulo (resto)    *)
-      | '|'    (* divisão real      *)
+    ::= '+'    (* adicao            *)
+      | '-'    (* subtracao         *)
+      | '*'    (* multiplicacao     *)
+      | '^'    (* potenciacao       *)
+      | '/'    (* divisao inteira   *)
+      | '%'    (* modulo (resto)    *)
+      | '|'    (* divisao real      *)
       | '>'    (* maior que         *)
       | '<'    (* menor que         *)
       | '=='   (* igual a           *)
@@ -128,7 +124,7 @@ digito
 
 
 (* ============================================================ *)
-(*  COMENTÁRIOS (pré-processados antes da análise léxica)        *)
+(*  COMENTARIOS (pre-processados antes da analise lexica)        *)
 (* ============================================================ *)
 
 comentario
@@ -209,7 +205,3 @@ A verificação é executada automaticamente e o resultado é salvo em `relatori
 | `%`       | Módulo           | int×int         | int           |
 | `\|`      | Divisão real     | numérico×numérico | real        |
 | `>` `<` `==` | Relacional  | numérico×numérico | bool        |
-
----
-
-*Referência: código-fonte `AnalisadorSemantico.py`, função `construirGramatica()` e `gerarRelatorioLL1()`.*
