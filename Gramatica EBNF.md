@@ -91,7 +91,9 @@ operador
       | '>'    (* maior que         *)
       | '<'    (* menor que         *)
       | '=='   (* igual a           *)
-
+      | 'OR'   (* OU                *)
+      | 'AND'  (* E                 *)
+      
 COMMAND
     ::= RES
       | MEM
