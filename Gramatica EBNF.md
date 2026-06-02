@@ -151,14 +151,14 @@ Os conjuntos abaixo são computados automaticamente pelo compilador e verificado
 | `continua_lista`      | `{(, EPSILON}`                                           |
 | `instrucao`           | `{`(`}`                                                  |
 | `conteudo_rpn`        | `{ID, NUM, (, TRUE, FALSE}`                              |
-| `elementos`           | `{COMMAND, ID, NUM, (, TRUE, FALSE, {}`                  |
-| `acao_final`          | `{+, -, *, \|, /, %, ^, >, <, ==, COMMAND, {}`          |
+| `elementos`           | `{COMMAND, ID, NUM, (, TRUE, FALSE, NOT, {}`                  |
+| `acao_final`          | `{+, -, *, \|, /, %, ^, >, <, ==, COMMAND, NOT {}`          |
 | `acao_pos_op`         | `{{, EPSILON}`                                           |
 | `estrutura_controle`  | `{{}`                                                    |
 | `tipo_controle`       | `{IF, WHILE}`                                            |
 | `bloco_codigo`        | `{{}`                                                    |
 | `valor`               | `{ID, NUM, (, TRUE, FALSE}`                              |
-| `operador`            | `{+, -, *, \|, /, %, ^, >, <, ==}`                      |
+| `operador`            | `{+, -, *, \|, /, %, ^, >, <, ==, OR, AND}`                      |
 
 ### FOLLOW
 
@@ -177,7 +177,7 @@ Os conjuntos abaixo são computados automaticamente pelo compilador e verificado
 | `estrutura_controle`  | `{), IF, WHILE}`                                         |
 | `tipo_controle`       | `{)}`                                                    |
 | `bloco_codigo`        | `{IF, WHILE}`                                            |
-| `valor`               | `{+, -, *, \|, /, %, ^, >, <, ==, COMMAND, {, }, )}`    |
+| `valor`               | `{+, -, *, \|, /, %, ^, >, <, ==, COMMAND, OR, AND {, }, )}`    |
 | `operador`            | `{{, )}`                                                 |
 
 ---
