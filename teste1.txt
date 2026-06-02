@@ -1,0 +1,56 @@
+*{
+   ====================================================
+   ARQUIVO DE TESTE 1 - SUCESSO E COMBINADO (COMPLETO)
+   ====================================================
+}*
+
+( START )
+
+( 20 A MEM )
+( 10 B MEM )
+( 5.5 RAIO MEM )
+( TRUE LIGADO MEM )
+
+*{ Operadores Aritmeticos }*
+( ( A B + ) SOMA MEM )
+( ( A B - ) SUB MEM )
+( ( A B * ) MULT MEM )
+( ( A B / ) DIV_INT MEM )
+( ( A B % ) MOD_INT MEM )
+( ( A B ^ ) POW MEM )
+( ( RAIO 2.0 | ) DIV_REAL MEM )
+
+*{ Operadores Relacionais }*
+( ( A B > ) GRANDE MEM )
+( ( A B < ) PEQUENO MEM )
+( ( A 20 == ) IGUAL MEM )
+
+*{ Operadores Logicos }*
+( ( LIGADO NOT ) DESLIGADO MEM )
+( ( LIGADO LIGADO AND ) E_LOG MEM )
+( ( LIGADO LIGADO OR ) OU_LOG MEM )
+
+*{ Estrutura WHILE e IF }*
+( 5 CONTADOR MEM )
+(
+    ( CONTADOR 0 > )
+    {
+        ( ( CONTADOR 1 - ) CONTADOR MEM )
+        
+        (
+            ( CONTADOR 2 == )
+            {
+                ( TRUE ALERTA MEM )
+            }
+            IF
+        )
+    }
+    WHILE
+)
+
+*{ Comando especial RES e comentario entre expressoes }*
+( ( 1 RES ) ANTERIOR MEM )
+*{ Ajuste: A operacao (A B *) deve estar isolada para ser somada ao resultado anterior }*
+( ( ( A B * ) *{ Comentario entre expressoes }* ) RESULTADO_FINAL MEM )
+
+( END )

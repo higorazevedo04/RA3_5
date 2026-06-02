@@ -1,0 +1,92 @@
+========================================================
+    RELATORIO DE VALIDACAO TEORICA LL(1)
+========================================================
+
+0. GRAMATICA DA LINGUAGEM (EBNF)
+
+   Notacao: '/' separa alternativas de producao (nao confundir com o
+   operador '|' da linguagem, que representa divisao real e aparece
+   sempre entre aspas simples).
+
+   programa          ::= '(' START ')' laco_principal
+   laco_principal    ::= '(' linha_ou_fim
+   linha_ou_fim      ::= END ')'
+                      /  conteudo_rpn ')' laco_principal
+   lista_instrucoes  ::= instrucao continua_lista
+   continua_lista    ::= instrucao continua_lista
+                      /  epsilon
+   instrucao         ::= '(' conteudo_rpn ')'
+   conteudo_rpn      ::= valor elementos
+   elementos         ::= COMMAND
+                      /  valor acao_final
+                      /  estrutura_controle
+                      /  NOT  (* NOT eh unario: (valor NOT) *)
+                      /  epsilon  (* leitura isolada: (ID) *)
+   acao_final        ::= operador acao_pos_op
+                      /  estrutura_controle
+                      /  COMMAND
+                      /  NOT   (* NOT eh unario *)
+   acao_pos_op       ::= estrutura_controle
+                      /  epsilon
+   estrutura_controle ::= bloco_codigo tipo_controle
+   tipo_controle     ::= IF
+                      /  WHILE
+   bloco_codigo      ::= '{' lista_instrucoes '}'
+   valor             ::= ID
+                      /  NUM
+                      /  instrucao
+   operador          ::= '+' / '-' / '*' / '|' / '/' / '%' / '^'
+                      /  '>' / '<' / '=='
+                      /  AND / OR
+   (* NOT nao aparece em 'operador' pois e unario e tratado separadamente *)
+
+   Terminais fixos  : START END IF WHILE RES MEM TRUE FALSE AND OR NOT
+   Terminais literais: '(' ')' '{' '}' '+' '-' '*' '|' '/' '%' '^' '>' '<' '=='
+   COMMAND           = RES / MEM
+   NUM               = literal inteiro / literal real / TRUE / FALSE
+   ID                = identificador de variavel (letras latinas maiusculas)
+
+1. CONJUNTOS FIRST (Primeiros)
+   FIRST(acao_final) = { %, *, +, -, /, <, ==, >, AND, COMMAND, NOT, OR, ^, {, | }
+   FIRST(acao_pos_op) = { EPSILON, { }
+   FIRST(bloco_codigo) = { { }
+   FIRST(conteudo_rpn) = { (, ID, NUM }
+   FIRST(continua_lista) = { (, EPSILON }
+   FIRST(elementos) = { (, COMMAND, EPSILON, ID, NOT, NUM, { }
+   FIRST(estrutura_controle) = { { }
+   FIRST(instrucao) = { ( }
+   FIRST(laco_principal) = { ( }
+   FIRST(linha_ou_fim) = { (, END, ID, NUM }
+   FIRST(lista_instrucoes) = { ( }
+   FIRST(operador) = { %, *, +, -, /, <, ==, >, AND, OR, ^, | }
+   FIRST(programa) = { ( }
+   FIRST(tipo_controle) = { IF, WHILE }
+   FIRST(valor) = { (, ID, NUM }
+
+2. CONJUNTOS FOLLOW (Seguintes)
+   FOLLOW(acao_final) = { ) }
+   FOLLOW(acao_pos_op) = { ) }
+   FOLLOW(bloco_codigo) = { IF, WHILE }
+   FOLLOW(conteudo_rpn) = { ) }
+   FOLLOW(continua_lista) = { } }
+   FOLLOW(elementos) = { ) }
+   FOLLOW(estrutura_controle) = { ) }
+   FOLLOW(instrucao) = { %, (, ), *, +, -, /, <, ==, >, AND, COMMAND, ID, NOT, NUM, OR, ^, {, |, } }
+   FOLLOW(laco_principal) = { $ }
+   FOLLOW(linha_ou_fim) = { $ }
+   FOLLOW(lista_instrucoes) = { } }
+   FOLLOW(operador) = { ), { }
+   FOLLOW(programa) = { $ }
+   FOLLOW(tipo_controle) = { ) }
+   FOLLOW(valor) = { %, (, ), *, +, -, /, <, ==, >, AND, COMMAND, ID, NOT, NUM, OR, ^, {, | }
+
+3. ANALISE DE CONFLITOS NA TABELA LL(1)
+   Inspecionando mapeamento de producoes por Lookahead...
+   -> 56 transicoes deterministicas mapeadas com sucesso.
+   -> Ausencia total de conflitos FIRST/FIRST confirmada.
+   -> Ausencia total de conflitos FIRST/FOLLOW confirmada.
+
+========================================================
+STATUS FINAL: VALIDADO E APROVADO
+A gramatica nao contem ambiguidades e e estritamente LL(1).
+========================================================

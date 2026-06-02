@@ -1,0 +1,35 @@
+*{
+   ====================================================
+   ARQUIVO DE TESTE 5 - VARIAVEIS E ERROS SEMANTICOS
+   ====================================================
+   Arquivo focado em destruir as regras de declaracao
+   de variaveis e provocar falhas de tipagem forte.
+   O AST deve ser gerado, mas o Assembly barrado.
+   ====================================================
+}*
+
+( START )
+
+*{ --- USO CORRETO --- }*
+( 500 SALARIO MEM )
+( ( SALARIO 100 + ) NOVO_SALARIO MEM )
+
+*{ --- USO INCORRETO 1: Variavel Nao Declarada --- }*
+*{ Tenta usar IMPOSTO sem ter feito ( V MEM ) antes }*
+( ( NOVO_SALARIO IMPOSTO - ) SALARIO_LIQUIDO MEM )
+
+*{ --- USO INCORRETO 2: Redefinicao Incompativel --- }*
+( TRUE SINAL_VITAL MEM )
+*{ Tentando sobrescrever um BOOL com um INT (Erro fatal!) }*
+( 100 SINAL_VITAL MEM )
+
+*{ --- USO INCORRETO 3: Operacao entre tipos incompativeis --- }*
+( 10.5 TAXA MEM )
+*{ Tentando subtrair um BOOL de um REAL (Erro fatal!) }*
+( ( TAXA TRUE - ) ERRO_TIPO MEM )
+
+*{ --- USO INCORRETO 4: Parametro invalido no RES --- }*
+*{ Tentando buscar historico negativo (Erro fatal!) }*
+( ( -5 RES ) HISTORICO_FALHO MEM )
+
+( END )

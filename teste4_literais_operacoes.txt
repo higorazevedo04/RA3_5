@@ -1,0 +1,42 @@
+*{
+   ====================================================
+   ARQUIVO DE TESTE 4 - LITERAIS E TODAS OPERACOES
+   ====================================================
+   Este arquivo foca exaustivamente em testar os tipos
+   de literais (int, real, bool) e todas as operacoes
+   suportadas, garantindo que o programa seja 100%
+   valido do ponto de vista semantico.
+   ====================================================
+}*
+
+( START )
+
+*{ 1. Teste de Literais (Declaracao) }*
+( 150 INT_A MEM )
+( 30 INT_B MEM )
+( 15.5 REAL_A MEM )
+( 2.5 REAL_B MEM )
+( TRUE BOOL_A MEM )
+( FALSE BOOL_B MEM )
+
+*{ 2. Testes de Operacoes Aritmeticas (Inteiros e Reais) }*
+( ( INT_A INT_B + ) SOMA_INT MEM )
+( ( INT_A INT_B - ) SUB_INT MEM )
+( ( INT_A INT_B * ) MUL_INT MEM )
+( ( INT_A INT_B / ) DIV_INT MEM )       *{ Divisao Inteira }*
+( ( INT_A INT_B % ) MOD_INT MEM )       *{ Resto Inteiro }*
+( ( REAL_A REAL_B | ) DIV_REAL MEM )    *{ Divisao Real }*
+( ( REAL_A 2.0 ^ ) POTENCIA_REAL MEM )
+
+*{ 3. Testes de Operacoes Relacionais }*
+( ( INT_A INT_B > ) MAIOR_QUE MEM )
+( ( REAL_A REAL_B < ) MENOR_QUE MEM )
+( ( BOOL_A BOOL_B == ) IGUAL_BOOL MEM ) *{ Relacional de Booleanos! }*
+( ( INT_A 150 == ) IGUAL_INT MEM )
+
+*{ 4. Testes de Operacoes Logicas }*
+( ( BOOL_A BOOL_B AND ) LOGICO_AND MEM )
+( ( BOOL_A BOOL_B OR ) LOGICO_OR MEM )
+( ( BOOL_A NOT ) LOGICO_NOT MEM )
+
+( END )

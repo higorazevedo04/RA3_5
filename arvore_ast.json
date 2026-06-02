@@ -1,0 +1,598 @@
+{
+    "tipo": "programa_ast",
+    "instrucoes": [
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "A",
+                "tipo_dado": null,
+                "linha": 9
+            },
+            "val_expr": {
+                "tipo": "numero",
+                "valor": 20,
+                "tipo_dado": "int",
+                "linha": 9
+            },
+            "linha": 9
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "B",
+                "tipo_dado": null,
+                "linha": 10
+            },
+            "val_expr": {
+                "tipo": "numero",
+                "valor": 10,
+                "tipo_dado": "int",
+                "linha": 10
+            },
+            "linha": 10
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "RAIO",
+                "tipo_dado": null,
+                "linha": 11
+            },
+            "val_expr": {
+                "tipo": "numero",
+                "valor": 5.5,
+                "tipo_dado": "real",
+                "linha": 11
+            },
+            "linha": 11
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "LIGADO",
+                "tipo_dado": null,
+                "linha": 12
+            },
+            "val_expr": {
+                "tipo": "numero",
+                "valor": true,
+                "tipo_dado": "bool",
+                "linha": 12
+            },
+            "linha": 12
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "SOMA",
+                "tipo_dado": null,
+                "linha": 15
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "+",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 15
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 15
+                },
+                "linha": 15
+            },
+            "linha": 15
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "SUB",
+                "tipo_dado": null,
+                "linha": 16
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "-",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 16
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 16
+                },
+                "linha": 16
+            },
+            "linha": 16
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "MULT",
+                "tipo_dado": null,
+                "linha": 17
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "*",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 17
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 17
+                },
+                "linha": 17
+            },
+            "linha": 17
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "DIV_INT",
+                "tipo_dado": null,
+                "linha": 18
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "/",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 18
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 18
+                },
+                "linha": 18
+            },
+            "linha": 18
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "MOD_INT",
+                "tipo_dado": null,
+                "linha": 19
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "%",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 19
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 19
+                },
+                "linha": 19
+            },
+            "linha": 19
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "POW",
+                "tipo_dado": null,
+                "linha": 20
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "^",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 20
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 20
+                },
+                "linha": 20
+            },
+            "linha": 20
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "DIV_REAL",
+                "tipo_dado": null,
+                "linha": 21
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "|",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "RAIO",
+                    "tipo_dado": null,
+                    "linha": 21
+                },
+                "direita": {
+                    "tipo": "numero",
+                    "valor": 2.0,
+                    "tipo_dado": "real",
+                    "linha": 21
+                },
+                "linha": 21
+            },
+            "linha": 21
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "GRANDE",
+                "tipo_dado": null,
+                "linha": 24
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": ">",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 24
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 24
+                },
+                "linha": 24
+            },
+            "linha": 24
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "PEQUENO",
+                "tipo_dado": null,
+                "linha": 25
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "<",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 25
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 25
+                },
+                "linha": 25
+            },
+            "linha": 25
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "IGUAL",
+                "tipo_dado": null,
+                "linha": 26
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "==",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 26
+                },
+                "direita": {
+                    "tipo": "numero",
+                    "valor": 20,
+                    "tipo_dado": "int",
+                    "linha": 26
+                },
+                "linha": 26
+            },
+            "linha": 26
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "DESLIGADO",
+                "tipo_dado": null,
+                "linha": 29
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "NOT",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "LIGADO",
+                    "tipo_dado": null,
+                    "linha": 29
+                },
+                "direita": null,
+                "linha": 29
+            },
+            "linha": 29
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "E_LOG",
+                "tipo_dado": null,
+                "linha": 30
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "AND",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "LIGADO",
+                    "tipo_dado": null,
+                    "linha": 30
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "LIGADO",
+                    "tipo_dado": null,
+                    "linha": 30
+                },
+                "linha": 30
+            },
+            "linha": 30
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "OU_LOG",
+                "tipo_dado": null,
+                "linha": 31
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "OR",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "LIGADO",
+                    "tipo_dado": null,
+                    "linha": 31
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "LIGADO",
+                    "tipo_dado": null,
+                    "linha": 31
+                },
+                "linha": 31
+            },
+            "linha": 31
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "CONTADOR",
+                "tipo_dado": null,
+                "linha": 34
+            },
+            "val_expr": {
+                "tipo": "numero",
+                "valor": 5,
+                "tipo_dado": "int",
+                "linha": 34
+            },
+            "linha": 34
+        },
+        {
+            "tipo": "controle",
+            "estrutura": "WHILE",
+            "condicao": {
+                "tipo": "operacao",
+                "operador": ">",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "CONTADOR",
+                    "tipo_dado": null,
+                    "linha": 36
+                },
+                "direita": {
+                    "tipo": "numero",
+                    "valor": 0,
+                    "tipo_dado": "int",
+                    "linha": 36
+                },
+                "linha": 36
+            },
+            "bloco": {
+                "tipo": "bloco",
+                "instrucoes": [
+                    {
+                        "tipo": "comando",
+                        "comando": "MEM",
+                        "nome_var": {
+                            "tipo": "variavel",
+                            "nome": "CONTADOR",
+                            "tipo_dado": null,
+                            "linha": 38
+                        },
+                        "val_expr": {
+                            "tipo": "operacao",
+                            "operador": "-",
+                            "esquerda": {
+                                "tipo": "variavel",
+                                "nome": "CONTADOR",
+                                "tipo_dado": null,
+                                "linha": 38
+                            },
+                            "direita": {
+                                "tipo": "numero",
+                                "valor": 1,
+                                "tipo_dado": "int",
+                                "linha": 38
+                            },
+                            "linha": 38
+                        },
+                        "linha": 38
+                    },
+                    {
+                        "tipo": "controle",
+                        "estrutura": "IF",
+                        "condicao": {
+                            "tipo": "operacao",
+                            "operador": "==",
+                            "esquerda": {
+                                "tipo": "variavel",
+                                "nome": "CONTADOR",
+                                "tipo_dado": null,
+                                "linha": 41
+                            },
+                            "direita": {
+                                "tipo": "numero",
+                                "valor": 2,
+                                "tipo_dado": "int",
+                                "linha": 41
+                            },
+                            "linha": 41
+                        },
+                        "bloco": {
+                            "tipo": "bloco",
+                            "instrucoes": [
+                                {
+                                    "tipo": "comando",
+                                    "comando": "MEM",
+                                    "nome_var": {
+                                        "tipo": "variavel",
+                                        "nome": "ALERTA",
+                                        "tipo_dado": null,
+                                        "linha": 43
+                                    },
+                                    "val_expr": {
+                                        "tipo": "numero",
+                                        "valor": true,
+                                        "tipo_dado": "bool",
+                                        "linha": 43
+                                    },
+                                    "linha": 43
+                                }
+                            ]
+                        },
+                        "linha": 45
+                    }
+                ]
+            },
+            "linha": 48
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "ANTERIOR",
+                "tipo_dado": null,
+                "linha": 52
+            },
+            "val_expr": {
+                "tipo": "comando",
+                "comando": "RES",
+                "alvo": {
+                    "tipo": "numero",
+                    "valor": 1,
+                    "tipo_dado": "int",
+                    "linha": 52
+                },
+                "linha": 52
+            },
+            "linha": 52
+        },
+        {
+            "tipo": "comando",
+            "comando": "MEM",
+            "nome_var": {
+                "tipo": "variavel",
+                "nome": "RESULTADO_FINAL",
+                "tipo_dado": null,
+                "linha": 54
+            },
+            "val_expr": {
+                "tipo": "operacao",
+                "operador": "*",
+                "esquerda": {
+                    "tipo": "variavel",
+                    "nome": "A",
+                    "tipo_dado": null,
+                    "linha": 54
+                },
+                "direita": {
+                    "tipo": "variavel",
+                    "nome": "B",
+                    "tipo_dado": null,
+                    "linha": 54
+                },
+                "linha": 54
+            },
+            "linha": 54
+        }
+    ]
+}

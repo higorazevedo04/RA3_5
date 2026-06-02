@@ -1,0 +1,36 @@
+*{
+   ====================================================
+   ARQUIVO DE TESTE 2 - ERRO SINTATICO
+   ====================================================
+   Este arquivo contem um erro sintatico proposital
+   inserido no meio de um bloco condicional.
+   ====================================================
+}*
+
+( START )
+
+( 50 LIMITE MEM )
+( 1 PASSO MEM )
+
+(
+    ( LIMITE 0 > )
+    {
+        *{ ==================================================== }*
+        *{ O ERRO SINTATICO ESTA NA LINHA ABAIXO:               }*
+        *{ O parentese final da instrucao foi removido          }*
+        *{ ==================================================== }*
+        
+        ( ( LIMITE PASSO - ) LIMITE MEM 
+
+        ( ( 2 PASSO * ) PASSO MEM )
+    }
+    IF
+)
+
+( 0.5 FATOR MEM )
+( ( FATOR 2.0 * ) FATOR MEM )
+
+( TRUE FLAG MEM )
+( ( FLAG NOT ) FLAG MEM )
+
+( END )

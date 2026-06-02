@@ -1,0 +1,43 @@
+*{
+   ====================================================
+   ARQUIVO DE TESTE 7 - COMBINACAO E COMENTARIOS
+   ====================================================
+   O "Chefao Final". Combina comandos especiais, blocos,
+   aninhamentos profundos e coloca os tres tipos de
+   comentarios exigidos na rubrica. 100% valido!
+   ====================================================
+}*
+
+( START )
+
+*{ 1. Este e um comentario ocupando uma linha inteira isolada }*
+( 5.0 RAIO MEM )
+( 3.1415 PI MEM ) *{ 2. Este e um comentario no final da linha de codigo }*
+
+*{ 3. Estruturas combinadas, comandos especiais e expressoes aninhadas }*
+(
+    ( RAIO 0.0 > )
+    {
+        *{ Calculo da area: PI * (RAIO * RAIO). 
+           Veja o comentario injetado NO MEIO da expressao! }*
+        ( ( PI *{ 3. Comentario entre expressoes! }* ( RAIO RAIO * ) * ) AREA MEM )
+        
+        *{ Decrementa o RAIO para nao ficar em loop infinito }*
+        ( ( RAIO 1.0 - ) RAIO MEM )
+
+        *{ Uso do comando especial RES para guardar a AREA calculada 2 passos atras }*
+        ( ( 2 RES ) ULTIMO_CALCULO MEM )
+        
+        *{ Aninhamento profundo de Ifs dentro de While }*
+        (
+            ( AREA 50.0 > )
+            {
+                ( TRUE ALERTA_AREA MEM )
+            }
+            IF
+        )
+    }
+    WHILE
+)
+
+( END )

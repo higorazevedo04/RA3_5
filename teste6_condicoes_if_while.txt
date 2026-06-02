@@ -1,0 +1,52 @@
+*{
+   ====================================================
+   ARQUIVO DE TESTE 6 - CONDICOES (IF / WHILE)
+   ====================================================
+   Focado exclusivamente nas estruturas de controle.
+   Testa a exigencia do Tipo 'bool' como condicao.
+   ====================================================
+}*
+
+( START )
+
+( 10 CONTADOR MEM )
+( FALSE FLAG_SAIDA MEM )
+
+*{ 1. Laco WHILE com condicao VALIDA (bool via relacional) }*
+(
+    ( CONTADOR 0 > )
+    {
+        ( ( CONTADOR 1 - ) CONTADOR MEM )
+    }
+    WHILE
+)
+
+*{ 2. Laco WHILE com condicao INVALIDA (recebendo um int) }*
+(
+    ( CONTADOR ) *{ ERRO: CONTADOR e int, devia ser bool }*
+    {
+        ( 0 CONTADOR MEM )
+    }
+    WHILE
+)
+
+*{ 3. Decisao IF com condicao VALIDA (recebendo bool direto) }*
+(
+    ( FLAG_SAIDA NOT )
+    {
+        ( TRUE FLAG_SAIDA MEM )
+    }
+    IF
+)
+
+*{ 4. Decisao IF com condicao INVALIDA (recebendo real) }*
+( 99.9 TEMPERATURA MEM )
+(
+    ( TEMPERATURA ) *{ ERRO: TEMPERATURA e real, devia ser bool }*
+    {
+        ( 0.0 TEMPERATURA MEM )
+    }
+    IF
+)
+
+( END )

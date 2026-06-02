@@ -1,0 +1,186 @@
+{
+    "arquivo_analisado": "teste1.txt",
+    "tabela_simbolos": {
+        "A": {
+            "tipo": "int",
+            "linha_def": 9,
+            "escopo": "global",
+            "linhas_uso": [
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                24,
+                25,
+                26,
+                54
+            ],
+            "definida": true
+        },
+        "B": {
+            "tipo": "int",
+            "linha_def": 10,
+            "escopo": "global",
+            "linhas_uso": [
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                24,
+                25,
+                54
+            ],
+            "definida": true
+        },
+        "RAIO": {
+            "tipo": "real",
+            "linha_def": 11,
+            "escopo": "global",
+            "linhas_uso": [
+                21
+            ],
+            "definida": true
+        },
+        "LIGADO": {
+            "tipo": "bool",
+            "linha_def": 12,
+            "escopo": "global",
+            "linhas_uso": [
+                29,
+                30,
+                30,
+                31,
+                31
+            ],
+            "definida": true
+        },
+        "SOMA": {
+            "tipo": "int",
+            "linha_def": 15,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "SUB": {
+            "tipo": "int",
+            "linha_def": 16,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "MULT": {
+            "tipo": "int",
+            "linha_def": 17,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "DIV_INT": {
+            "tipo": "int",
+            "linha_def": 18,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "MOD_INT": {
+            "tipo": "int",
+            "linha_def": 19,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "POW": {
+            "tipo": "int",
+            "linha_def": 20,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "DIV_REAL": {
+            "tipo": "real",
+            "linha_def": 21,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "GRANDE": {
+            "tipo": "bool",
+            "linha_def": 24,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "PEQUENO": {
+            "tipo": "bool",
+            "linha_def": 25,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "IGUAL": {
+            "tipo": "bool",
+            "linha_def": 26,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "DESLIGADO": {
+            "tipo": "bool",
+            "linha_def": 29,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "E_LOG": {
+            "tipo": "bool",
+            "linha_def": 30,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "OU_LOG": {
+            "tipo": "bool",
+            "linha_def": 31,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "CONTADOR": {
+            "tipo": "int",
+            "linha_def": 38,
+            "escopo": "global",
+            "linhas_uso": [
+                36,
+                38,
+                41
+            ],
+            "definida": true
+        },
+        "ALERTA": {
+            "tipo": "bool",
+            "linha_def": 43,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "ANTERIOR": {
+            "tipo": "any",
+            "linha_def": 52,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        },
+        "RESULTADO_FINAL": {
+            "tipo": "int",
+            "linha_def": 54,
+            "escopo": "global",
+            "linhas_uso": [],
+            "definida": true
+        }
+    },
+    "erros_semanticos": []
+}

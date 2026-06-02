@@ -1,0 +1,51 @@
+*{
+   ====================================================
+   ARQUIVO DE TESTE 3 - ERROS SEMANTICOS INTENCIONAIS
+   ====================================================
+   A sintaxe e valida, mas o arquivo viola regras de
+   tipos, testando a robustez da inferencia do grupo.
+   ====================================================
+}*
+
+( START )
+
+*{ 1. Teste de variavel usada de forma incorreta (NAO DECLARADA) }*
+( ( VAR_FANTASMA 10 + ) RESULTADO MEM )
+
+*{ Declaracao inicial correta }*
+( 100 DINHEIRO MEM )
+( TRUE VALIDADO MEM )
+( 3.14 PI MEM )
+
+*{ 2. Teste de operacoes com tipos incompativeis (int + bool) }*
+( ( DINHEIRO VALIDADO + ) MISTURA MEM )
+
+*{ 3. Teste de condicao invalida em laco (int em vez de bool) }*
+(
+    ( DINHEIRO ) *{ DINHEIRO e int, logo o WHILE deve dar erro semantico }*
+    {
+        ( ( DINHEIRO 1 - ) DINHEIRO MEM )
+    }
+    WHILE
+)
+
+*{ 4. Teste de condicao invalida em decisao (real em vez de bool) }*
+(
+    ( PI ) *{ PI e real, o IF deve dar erro semantico }*
+    {
+        ( 0 DINHEIRO MEM )
+    }
+    IF
+)
+
+*{ 5. Teste de uso incorreto de variavel (REDEFINICAO INCOMPATIVEL) }*
+*{ A variavel PI foi criada como REAL, tentarei mudar para BOOL }*
+( FALSE PI MEM )
+
+*{ 6. Comando RES com operando incorreto (N negativo) }*
+( ( -1 RES ) NEGATIVO MEM )
+
+( 0 ZERO MEM )
+( 1 UM MEM )
+
+( END )
