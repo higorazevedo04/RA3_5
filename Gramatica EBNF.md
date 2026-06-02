@@ -206,4 +206,6 @@ A verificação é executada automaticamente e o resultado é salvo em `relatori
 | `/`       | Divisão inteira  | int×int         | int           |
 | `%`       | Módulo           | int×int         | int           |
 | `\|`      | Divisão real     | numérico×numérico | real        |
-| `>` `<` `==` | Relacional  | numérico×numérico | bool        |
+| `>` `<` `==` | Relacional  | numérico×numérico | bool          |
+| 'AND' 'OR'   | Lógico Binário | bool x bool    | bool          |
+| 'NOT'        | Lógico Unário  | bool           | bool          |
