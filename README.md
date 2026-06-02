@@ -186,8 +186,10 @@ cd rpn-compiler
 ### 5.3 Executar o compilador
 
 ```bash
+
+python AnalisadorSemantico.py <teste1.txt>
 # Sintaxe geral
-python AnalisadorSemantico.py <arquivo_fonte.txt>
+python AnalisadorSemantico.py <arquivo.txt>
 
 # Exemplo com arquivo válido
 python AnalisadorSemantico.py exemplos/validos/controle_fluxo.txt
