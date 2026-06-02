@@ -39,6 +39,17 @@ def construirGramatica():
 
 def calcularFirst(gramatica):
      # Cria um conjunto com todos os não-terminais da gramática
+     # Gramática LL(1) da linguagem RPN.
+    # Cada chave é um não-terminal; o valor é uma lista de produções alternativas.
+    # Cada produção é uma lista de símbolos (terminais em letras/aspas, não-terminais
+    # em snake_case, e 'EPSILON' para produções vazias).
+    #
+    # Decisões de projeto relevantes:
+    #   - NOT é tratado como símbolo próprio em 'elementos' e 'acao_final' porque é
+    #     um operador UNÁRIO (só consume um operando da pilha), diferente de todos os
+    #     demais que são binários.
+    #   - AND e OR estão em 'operador' pois seguem o padrão binário (val val op).
+    #   - EPSILON em 'continua_lista' e 'acao_pos_op' permite sequências opcionais.
     nao_terminais = set(gramatica.keys())
 
     # Conjunto que armazenará quais não-terminais podem gerar EPSILON (vazio)
@@ -131,7 +142,9 @@ def calcularFollow(gramatica, first, nullable):
 # ============================================================
 
 def construirTabelaLL1(gramatica, first, follow, nullable):
+    # Cria um conjunto com todos os não-terminais da gramática
     nao_terminais = set(gramatica.keys())
+    # Conjunto completo de terminais reconhecidos pelo parser
     terminais = {
         'START', 'END', '(', ')', '{', '}',
         'ID', 'NUM',
@@ -140,10 +153,12 @@ def construirTabelaLL1(gramatica, first, follow, nullable):
         'AND', 'OR', 'NOT',
         'IF', 'WHILE', 'COMMAND', '$'
     }
+    # Tabela M[não-terminal][terminal] → produção a usar (None = erro sintático)
     tabela = {nt: {t: None for t in terminais} for nt in nao_terminais}
 
     for head, prods in gramatica.items():
         for p in prods:
+            # Calcula FIRST da produção p (f_p)
             f_p = set()
             if p == ['EPSILON']:
                 f_p.add('EPSILON')
@@ -156,8 +171,10 @@ def construirTabelaLL1(gramatica, first, follow, nullable):
                     if s not in nullable:
                         break
                 else:
+                    # Toda a produção pode derivar EPSILON
                     f_p.add('EPSILON')
 
+            # Para cada terminal em FIRST(p)\{EPSILON}: M[head][t] = p
             for t in f_p - {'EPSILON'}:
                 if t not in terminais:
                     continue
@@ -165,6 +182,9 @@ def construirTabelaLL1(gramatica, first, follow, nullable):
                     raise Exception(f"Conflito LL(1) em [{head}, {t}]")
                 tabela[head][t] = p
 
+             # Se EPSILON ∈ FIRST(p): para cada t em FOLLOW(head), M[head][t] = p
+
+            # (apenas preenche se a célula ainda estiver vazia)
             if 'EPSILON' in f_p:
                 for t in follow[head]:
                     if t in terminais and tabela[head][t] is None:
@@ -254,17 +274,7 @@ def gerarRelatorioLL1(primeiros, seguintes, tabela):
 # ============================================================
 
 def gerarGramaticaMd():
-    """Gera o arquivo gramatica.md com a gramática LL(1) aumentada em EBNF.
 
-    Conforme Seção 10.3 do enunciado, este arquivo deve conter a gramática
-    atribuída em formato EBNF, usando letras minúsculas para não-terminais
-    e maiúsculas para terminais.
-
-    Decisão de projeto: o separador de alternativas usado é '/' em vez do
-    '|' convencional da EBNF, pois '|' também é um operador da linguagem
-    (divisão real). Isso elimina qualquer ambiguidade visual na leitura da
-    gramática.
-    """
     nome_arquivo = "gramatica.md"
     with open(nome_arquivo, "w", encoding="utf-8") as f:
         f.write("# Gramática da Linguagem — EBNF Aumentada (LL(1))\n\n")
@@ -572,60 +582,70 @@ class ListaTokens(list):
     """Lista de tokens com suporte a atributo _mapa_linhas para rastreamento de linhas."""
     def __init__(self, *args):
         super().__init__(*args)
+         # Dicionário índice_token → número_de_linha para rastrear origem de cada token
         self._mapa_linhas = {}
 
 
 
 def estado_inicial_afd(linha, i, tokens):
+     #Estado inicial do AFD léxico.
+ 
+    #Ponto de entrada para cada caractere. Decide para qual estado especializado
+    #(número, identificador) ou qual token fixo emitir, depois retorna recursivamente
+    #ao estado inicial para o próximo caractere.
+     
     if i >= len(linha):
         return i
 
     c = linha[i]
-
+    # Espaço e tabulação: ignorados (whitespace não gera token)
     if c in (' ', '\t'):
         return estado_inicial_afd(linha, i + 1, tokens)
-
+    # Delimitadores de instrução
     elif c in ('(', ')'):
         tokens.append(c)
         return estado_inicial_afd(linha, i + 1, tokens)
-
+    # Delimitadores de instrução
     elif c in ('{', '}'):
         tokens.append(c)
         return estado_inicial_afd(linha, i + 1, tokens)
-
+    # Operadores relacionais simples (um caractere)
     elif c in ('>', '<'):
         tokens.append(c)
         return estado_inicial_afd(linha, i + 1, tokens)
-
+    # Operador relacional de igualdade '==' (dois caracteres)
     elif c == '=':
         if i + 1 < len(linha) and linha[i + 1] == '=':
             tokens.append('==')
             return estado_inicial_afd(linha, i + 2, tokens)
         else:
+            # '=' isolado não é válido na linguagem
             raise ValueError(f"Caractere invalido '=' isolado na posicao {i}")
-
+    # Operador de divisão real (pipe)
     elif c == '|':
         tokens.append('|')
         return estado_inicial_afd(linha, i + 1, tokens)
-
+    # Operador de divisão inteira
     elif c == '/':
         tokens.append('/')
         return estado_inicial_afd(linha, i + 1, tokens)
-
+    # Operadores aritméticos simples
     elif c in ('+', '*', '%', '^'):
         tokens.append(c)
         return estado_inicial_afd(linha, i + 1, tokens)
-
+    # '-' pode iniciar número negativo ou ser operador de subtração
     elif c == '-':
         if i + 1 < len(linha) and ('0' <= linha[i + 1] <= '9'):
+            # Dígito após '-': trata como início de número negativo
             return estado_numero_afd(linha, i, tokens)
         else:
+            # Sem dígito: é o operador binário de subtração
             tokens.append(c)
             return estado_inicial_afd(linha, i + 1, tokens)
-
+    # Dígito: inicia reconhecimento de literal numérico
     elif '0' <= c <= '9':
         return estado_numero_afd(linha, i, tokens)
-
+    # Letra ou '_': inicia reconhecimento de identificador ou palavra reservada
     elif c.isalpha() or c == '_':
         return estado_identificador_afd(linha, i, tokens)
 
@@ -635,12 +655,12 @@ def estado_inicial_afd(linha, i, tokens):
 
 def estado_numero_afd(linha, i, tokens):
     num = ""
-    ponto = False
-
+    ponto = False # Controla se o ponto decimal já foi consumido
+    # Consome sinal negativo opcional
     if i < len(linha) and linha[i] == '-':
         num += '-'
         i += 1
-
+    # Consome dígitos e no máximo um ponto decimal
     while i < len(linha):
         c = linha[i]
         if '0' <= c <= '9':
@@ -653,10 +673,10 @@ def estado_numero_afd(linha, i, tokens):
         else:
             break
         i += 1
-
+    # Valida que algo além do sinal foi consumido
     if num in ('-', ''):
         raise ValueError(f"Numero malformado: '{num}'")
-
+    # Número não pode terminar com '.' (ex: '3.' é inválido)
     if num.endswith('.'):
         raise ValueError(f"Numero malformado: '{num}'")
 
@@ -674,6 +694,7 @@ def estado_identificador_afd(linha, i, tokens):
 
 
 def tokenizarLinha(linha):
+    # Tokeniza uma linha completa de texto fonte usando o AFD léxico. Retorna a lista de tokens reconhecidos na linha
     tokens = []
     estado_inicial_afd(linha, 0, tokens)
     return tokens
@@ -691,14 +712,14 @@ def validar_token(token):
 
     if token in alfabeto_fixo:
         return True
-
+    # Remove sinal negativo para validar a parte numérica
     t = token
     if t.startswith('-'):
         t = t[1:]
-
+    # Valida literal numérico (inteiro ou real): dígitos com no máximo um ponto
     if t.replace('.', '', 1).isdigit() and t != '.' and not t.startswith('.'):
         return True
-
+    # Valida identificador: começa com letra ou '_', demais são alfanuméricos ou '_'
     if token and (token[0].isalpha() or token[0] == '_') and all(c.isalnum() or c == '_' for c in token):
         return True
 
@@ -715,22 +736,25 @@ def removerComentarios(texto):
     num_linha = 1
 
     while i < len(texto):
+        # Detecta abertura de comentário: '*{'
         if texto[i] == '*' and i + 1 < len(texto) and texto[i+1] == '{':
             inicio = i
             linha_inicio = num_linha
-            i += 2
+            i += 2 # Avança além do marcador de abertura
             conteudo_comentario = ""
-
+            # Varre até encontrar o fechamento '}*' ou atingir o fim do arquivo
             while i < len(texto):
                 if texto[i] == '}' and i + 1 < len(texto) and texto[i+1] == '*':
-                    i += 2
+                    i += 2 # Avança além do marcador de fechamento
                     break
                 if texto[i] == '\n':
                     num_linha += 1
                     resultado.append('\n')
+                    # Preserva quebra de linha para não deslocar o contador de linhas
                 conteudo_comentario += texto[i]
                 i += 1
             else:
+                # Loop encerrado sem break: comentário não foi fechado
                 print(f"[ERRO LEXICO] Linha {linha_inicio}: Comentario nao fechado (falta '}}*')")
                 return None, comentarios_encontrados
 
@@ -756,7 +780,7 @@ def lerTokens(arquivo):
 
     with open(caminho_completo, 'r', encoding='utf-8') as f:
         texto_completo = f.read()
-
+    # Etapa 1: remove comentários *{ }* e coleta metadados dos comentários
     texto_sem_comentarios, comentarios = removerComentarios(texto_completo)
     if texto_sem_comentarios is None:
         return None
@@ -765,6 +789,7 @@ def lerTokens(arquivo):
     mapa_linhas_extraido = {}
     erros_lexicos = 0
     tokens_comentario_lista = []
+    # Exibe e registra comentários encontrados (são descartados do fluxo do parser)
     if comentarios:
         print(f"[INFO LEXICO] {len(comentarios)} comentario(s) reconhecido(s) e descartados (tipo COMENTARIO):")
         for linha, conteudo in comentarios:
@@ -921,25 +946,27 @@ def imprimirTokensLexicos(tokens):
 class ParserRecursivo:
 
     def __init__(self, tokens, tabela):
-        self.tokens = tokens
-        self.tabela = tabela
-        self.cursor = 0
-        self.erro = False
-        self.pilha_analise = []
-        self.pilha_semantica = []
-        self.mapa_linhas = getattr(tokens, '_mapa_linhas', {})
+        self.tokens = tokens # Lista de tokens (com $ no final)
+        self.tabela = tabela # Tabela LL(1): M[nt][terminal] → produção
+        self.cursor = 0 # Posição atual na lista de tokens
+        self.erro = False # Flag de erro sintático
+        self.pilha_analise = []  # Rastro dos não-terminais em processamento
+        self.pilha_semantica = [] # Pilha de nós AST em construção
+        self.mapa_linhas = getattr(tokens, '_mapa_linhas', {}) # índice → linha física
 
     def linha_atual(self):
+        # Retorna o número de linha física do token sob o cursor
         return self.mapa_linhas.get(self.cursor, 0)
 
     def categorizar(self, token):
+        # RES e MEM são tratados como a categoria genérica COMMAND na gramática
         comandos_especiais = {'RES', 'MEM'}
         if token in comandos_especiais:
             return 'COMMAND'
-
+        # TRUE e FALSE são literais numéricos do tipo bool (categoria NUM)
         if token in ('TRUE', 'FALSE'):
             return 'NUM'
-
+        # Terminais fixos: retornam a si mesmos como categoria
         fixos = {
             'START', 'END', '(', ')', '{', '}',
             '+', '-', '*', '|', '/', '%', '^',
@@ -949,16 +976,17 @@ class ParserRecursivo:
         }
         if token in fixos:
             return token
-
+        # Literal numérico (inteiro ou real, com sinal opcional)
         t = token
         if t.startswith('-'):
             t = t[1:]
         if t.replace('.', '', 1).isdigit() and t != '.':
             return 'NUM'
-
+        # Qualquer outra coisa é identificador (nome de variável)
         return 'ID'
 
     def lookahead(self):
+        # Retorna a categoria do token atual (sem consumir)
         token_atual = self.tokens[self.cursor] if self.cursor < len(self.tokens) else '$'
         return self.categorizar(token_atual)
 
@@ -989,10 +1017,12 @@ class ParserRecursivo:
         linha = self.linha_atual()
 
         if token == 'START':
+            # Marca o início do programa na pilha para delimitar as instruções
             self.pilha_semantica.append('MARKER_START')
             return
 
         if token == '{':
+             # Marca o início de um bloco de código
             self.pilha_semantica.append('MARKER_BLOCK')
             return
 
