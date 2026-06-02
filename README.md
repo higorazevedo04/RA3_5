@@ -188,6 +188,7 @@ cd rpn-compiler
 ```bash
 
 python AnalisadorSemantico.py <teste1.txt>
+
 # Sintaxe geral
 python AnalisadorSemantico.py <arquivo.txt>
 
